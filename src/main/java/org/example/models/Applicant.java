@@ -77,6 +77,11 @@ public class Applicant extends Person {
         this.statusOfAdmission = statusOfAdmission;
     }
 
+//    public void addApplicantToSchoolApplicantList() {
+//        List<Applicant> applicantList = School.getListOfApplicant();
+//        applicantList.add(this);
+//    }
+
     @Override
     public String toString() {
         return "Applicant{" +

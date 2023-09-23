@@ -140,6 +140,7 @@ public class Main {
              ap2.setAge(11);
              ap2.setName("Applicant 2");
              ap2.setRole(ROLE.APPLICANT);
+             ap2.setAverageScore(100);
              ap2.setEntranceExamSubjects(entranceExam);
 
      Staff  prin = new Staff();
@@ -149,13 +150,27 @@ public class Main {
 
      Staff teach1 = new Staff();
              teach1.setName("Teacher 1");
-             teach1.setRole(ROLE.LECTURER);
+             teach1.setRole(ROLE.ADMISSION_OFFICER);
              teach1.setDesignation(DESIGNATION.ACADEMIC);
 
      Staff ad1 = new Staff();
              ad1.setName("Admin 1");
-             ad1.setRole(ROLE.ADMISSION);
+             ad1.setRole(ROLE.PRINCIPAL);
              ad1.setDesignation(DESIGNATION.NON_ACADEMIC);
+
+             School school = new School();
+
+             System.out.println("**************** Fourth class ****************");
+//         System.out.println(ad1.admitApplicant(ap2));
+         System.out.println(teach1.admitApplicant(ap2,school));
+//         System.out.println(ap2);
+         System.out.println(school.getListOfStudents().size());
+//
+//         System.out.println(School.getListOfStaff().size());
+
+         School s = new School();
+         System.out.println("*************************");
+         System.out.println(s.getListOfStudents());
 
     }
 

@@ -1,20 +1,22 @@
 package org.example.models;
 
+import org.example.enums.REMARK;
+
 public class Result {
     private String tittle;
     private String comment;
     private String applicantName;
     private double examScore;
-    private String remark;
+    private REMARK remark;
 
 
     public Result() {
     }
 
-    public Result(String applicantName, String tittle, String comment, double examScore, String remark) {
+    public Result(String tittle, String comment, String applicantName, double examScore, REMARK remark) {
         this.tittle = tittle;
-        this.applicantName = applicantName;
         this.comment = comment;
+        this.applicantName = applicantName;
         this.examScore = examScore;
         this.remark = remark;
     }
@@ -32,7 +34,15 @@ public class Result {
     }
 
     public void setComment(String comment) {
-        comment = comment;
+        this.comment = comment;
+    }
+
+    public String getApplicantName() {
+        return applicantName;
+    }
+
+    public void setApplicantName(String applicantName) {
+        this.applicantName = applicantName;
     }
 
     public double getExamScore() {
@@ -43,26 +53,22 @@ public class Result {
         this.examScore = examScore;
     }
 
-    public String getRemark() {
+    public REMARK getRemark() {
         return remark;
     }
 
-    public void setApplicantName(String applicantName) {
-        this.applicantName = applicantName;
-    }
-
-    public void getApplicantName(String applicantName) {
-        this.applicantName = applicantName;
+    public void setRemark(REMARK remark) {
+        this.remark = remark;
     }
 
     @Override
     public String toString() {
         return "Result{" +
                 "tittle='" + tittle + '\'' +
-                ", Comment='" + comment + '\'' +
-                ", ApplicantName='" + applicantName + '\'' +
+                ", comment='" + comment + '\'' +
+                ", applicantName='" + applicantName + '\'' +
                 ", examScore=" + examScore +
-                ", remark='" + remark + '\'' +
+                ", remark=" + remark +
                 '}';
     }
 }

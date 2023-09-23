@@ -8,6 +8,7 @@ public abstract class Person {
     private String email;
     private GENDER gender;
     private ROLE role;
+    private static int num =1;
 
     public Person() {
     }
@@ -17,6 +18,15 @@ public abstract class Person {
         this.email = email;
         this.gender = gender;
         this.role = role;
+    }
+
+
+    public static int getNum() {
+        return num;
+    }
+
+    public static void setNum(int num) {
+        Person.num = num;
     }
 
     public String getName() {

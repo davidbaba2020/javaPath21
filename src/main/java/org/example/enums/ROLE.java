@@ -5,5 +5,6 @@ public enum ROLE {
     PRINCIPAL,
     STUDENT,
     APPLICANT,
-    ADMISSION
+    ADMISSION_OFFICER,
+    GARDENER
 }
