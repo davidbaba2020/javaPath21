@@ -2,7 +2,7 @@ package org.example.models;
 
 public class Subject {
     private String subjectTitle;
-    private int subjectUnit;
+    private int subjectUnit =0;
     private double score;
 
     public Subject() {

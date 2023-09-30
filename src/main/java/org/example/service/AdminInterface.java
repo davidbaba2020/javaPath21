@@ -9,6 +9,8 @@ public interface AdminInterface {
 }
 
 
+
+
 //S  - Single responsibility
 //O  - Open to extension close to modification
 //L -  Liskov substitution

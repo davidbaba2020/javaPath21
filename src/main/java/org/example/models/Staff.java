@@ -7,12 +7,15 @@ import org.example.enums.ROLE;
 import org.example.exceptions.OutOfRangeScore;
 import org.example.exceptions.UnAuthorizeException;
 import org.example.service.AdminInterface;
+import org.example.service.LecturerInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.common.ConstantFields.UNAUTHORIZE;
 
-public class Staff extends Person implements AdminInterface {
+
+public class Staff extends Person implements AdminInterface, LecturerInterface {
     private int staffNo;
     private DESIGNATION designation;
     private Double walletAmount;
@@ -74,6 +77,10 @@ public class Staff extends Person implements AdminInterface {
         System.out.println(applicant.getAverageScore());
         List<Student> schoolStudentsList =new ArrayList<>();
 
+        if(!applicant.getScoresEntered()) {
+            throw new OutOfRangeScore("Please contact Teacher to input score");
+        }
+
         double averageScore = applicant.getAverageScore();
         Result result = new Result();
         Student newAdmitedStudent = new Student();
@@ -82,7 +89,7 @@ public class Staff extends Person implements AdminInterface {
         result.setExamScore(applicant.getAverageScore());
 
         if(this.getRole()!=ROLE.ADMISSION_OFFICER) {
-            throw new UnAuthorizeException("You don't have this permission");
+            throw new UnAuthorizeException(UNAUTHORIZE);
         }
         if((averageScore<0) || (averageScore>100)) {
             throw new OutOfRangeScore("This score is out of range");
@@ -115,5 +122,29 @@ public class Staff extends Person implements AdminInterface {
         school.setListOfStudents(schoolStudentsList);
     }
 
+    @Override
+    public String enterApplicantsScore(Applicant applicant, School school, double m,double e) {
+        if(this.getRole()!=ROLE.LECTURER) {
+            throw new UnAuthorizeException(UNAUTHORIZE);
+        }
+        if(applicant.getScoresEntered()) {
+            throw new UnAuthorizeException("Student score already entered");
+        }
+        Subject math = new Subject();
+                math.setScore(m);
+                math.setSubjectUnit(2);
+                math.setSubjectTitle("MATH001");
+
+        Subject english = new Subject();
+                english.setScore(e);
+                english.setSubjectUnit(3);
+                english.setSubjectTitle("ENG001");
+        applicant.setScoresEntered(true);
+        List<Subject> subjectsOfApplicant = new ArrayList<Subject>(List.of(math,english));
+
+        applicant.setEntranceExamSubjects(subjectsOfApplicant);
+        applicant.setAverageScore((e+m)/2);
+        return "Result entered successfully";
+    }
 }
 

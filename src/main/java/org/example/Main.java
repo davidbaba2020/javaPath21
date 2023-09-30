@@ -150,21 +150,21 @@ public class Main {
 
      Staff teach1 = new Staff();
              teach1.setName("Teacher 1");
-             teach1.setRole(ROLE.ADMISSION_OFFICER);
+             teach1.setRole(ROLE.LECTURER);
              teach1.setDesignation(DESIGNATION.ACADEMIC);
 
      Staff ad1 = new Staff();
              ad1.setName("Admin 1");
-             ad1.setRole(ROLE.PRINCIPAL);
+             ad1.setRole(ROLE.ADMISSION_OFFICER);
              ad1.setDesignation(DESIGNATION.NON_ACADEMIC);
 
              School school = new School();
 
              System.out.println("**************** Fourth class ****************");
 //         System.out.println(ad1.admitApplicant(ap2));
-         System.out.println(teach1.admitApplicant(ap2,school));
+//         System.out.println(teach1.admitApplicant(ap2,school));
 //         System.out.println(ap2);
-         System.out.println(school.getListOfStudents().size());
+//         System.out.println(school.getListOfStudents().size());
 //
 //         System.out.println(School.getListOfStaff().size());
 
@@ -172,7 +172,16 @@ public class Main {
          System.out.println("*************************");
          System.out.println(s.getListOfStudents());
 
-    }
+
+
+         System.out.println("************************Fifth Class ************************");
+         System.out.println(teach1.enterApplicantsScore(ap1, school, 30, 50));
+         System.out.println(ap1);
+//         System.out.println(teach1.enterApplicantsScore(ap1, school, 90, 70));
+         System.out.println(ad1.admitApplicant(ap1, school));
+
+
+     }
 
 
     public int areaOfPlaneShapes(int length, int breath) {

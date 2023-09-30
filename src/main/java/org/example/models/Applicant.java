@@ -9,8 +9,9 @@ import java.util.List;
 public class Applicant extends Person {
     private int age;
     private String studentClass;
+    private Boolean scoresEntered=false;
     private List<Subject> entranceExamSubjects;
-    private double averageScore;
+    private Double averageScore = 0.0;
     private ADMISIONSTATUS statusOfAdmission = ADMISIONSTATUS.NOT_ADMITTED;
 
 //    No argument constructor
@@ -28,10 +29,20 @@ public class Applicant extends Person {
         this.statusOfAdmission = statusOfAdmission;
     }
 
-    public Applicant(String name, String email, GENDER gender, ROLE role, int age, String studentClass, List<Subject> entranceExamSubjects, double averageScore, ADMISIONSTATUS statusOfAdmission) {
+    public Applicant(int age, String studentClass, Boolean scoresEntered, List<Subject> entranceExamSubjects, Double averageScore, ADMISIONSTATUS statusOfAdmission) {
+        this.age = age;
+        this.studentClass = studentClass;
+        this.scoresEntered = scoresEntered;
+        this.entranceExamSubjects = entranceExamSubjects;
+        this.averageScore = averageScore;
+        this.statusOfAdmission = statusOfAdmission;
+    }
+
+    public Applicant(String name, String email, GENDER gender, ROLE role, int age, String studentClass, Boolean scoresEntered, List<Subject> entranceExamSubjects, Double averageScore, ADMISIONSTATUS statusOfAdmission) {
         super(name, email, gender, role);
         this.age = age;
         this.studentClass = studentClass;
+        this.scoresEntered = scoresEntered;
         this.entranceExamSubjects = entranceExamSubjects;
         this.averageScore = averageScore;
         this.statusOfAdmission = statusOfAdmission;
@@ -69,6 +80,18 @@ public class Applicant extends Person {
         this.averageScore = averageScore;
     }
 
+    public Boolean getScoresEntered() {
+        return scoresEntered;
+    }
+
+    public void setScoresEntered(Boolean scoresEntered) {
+        this.scoresEntered = scoresEntered;
+    }
+
+    public void setAverageScore(Double averageScore) {
+        this.averageScore = averageScore;
+    }
+
     public ADMISIONSTATUS getStatusOfAdmission() {
         return statusOfAdmission;
     }
@@ -87,6 +110,7 @@ public class Applicant extends Person {
         return "Applicant{" +
                 "age=" + age +
                 ", studentClass='" + studentClass + '\'' +
+                ", scoresEntered=" + scoresEntered +
                 ", entranceExamSubjects=" + entranceExamSubjects +
                 ", averageScore=" + averageScore +
                 ", statusOfAdmission=" + statusOfAdmission +
