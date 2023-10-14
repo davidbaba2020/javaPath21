@@ -73,9 +73,9 @@ public class Staff extends Person implements AdminInterface, LecturerInterface {
 
 
     @Override
-    public Result admitApplicant(Applicant applicant, School school) {
+    public List<Student> admitApplicant(Applicant applicant, School school) {
         System.out.println(applicant.getAverageScore());
-        List<Student> schoolStudentsList =new ArrayList<>();
+        List<Student> schoolStudentsList = new ArrayList<>();
 
         if(!applicant.getScoresEntered()) {
             throw new OutOfRangeScore("Please contact Teacher to input score");
@@ -111,7 +111,7 @@ public class Staff extends Person implements AdminInterface, LecturerInterface {
             } else {
                 result.setRemark(REMARK.FAIL);
             }
-        return result;
+        return schoolStudentsList;
     }
 
     private static void addApplicantToStudentList(Applicant applicant, School school, List<Student> schoolStudentsList, Student newAdmitedStudent) {
