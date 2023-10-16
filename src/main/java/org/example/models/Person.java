@@ -4,7 +4,7 @@ import org.example.enums.GENDER;
 import org.example.enums.ROLE;
 
 public abstract class Person {
-    private String name;
+    static private String name;
     private String email;
     private GENDER gender;
     private ROLE role;

@@ -2,16 +2,26 @@ package org.example.models;
 
 import org.example.enums.ADMISIONSTATUS;
 import org.example.enums.GENDER;
+import org.example.enums.REGISTRATION_STATUS;
 import org.example.enums.ROLE;
+import org.example.exceptions.AccountBlockedException;
+import org.example.exceptions.InvalidTokenException;
+import org.example.exceptions.TokenUsedException;
+import org.example.exceptions.UnAuthorizeException;
+import org.example.service.StudentInterface;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
-public class Student extends Person {
+public class Student extends Person implements StudentInterface {
     private int regNumber;
     private int age;
+    private int wrongTokenEntryCount =0;
     private String studentClass;
     private List<Subject> subjectsOffered;
     private double averageScore;
+    private REGISTRATION_STATUS departmentalRegistrationStatus = REGISTRATION_STATUS.NOT_APPROVED;
     private ADMISIONSTATUS statusOfAdmission = ADMISIONSTATUS.ADMITTED;
 
 //    No argument constructor
@@ -76,6 +86,14 @@ public class Student extends Person {
         return averageScore;
     }
 
+    public int getWrongTokenEntryCount() {
+        return wrongTokenEntryCount;
+    }
+
+    public void setWrongTokenEntryCount(int wrongTokenEntryCount) {
+        this.wrongTokenEntryCount = wrongTokenEntryCount;
+    }
+
     public void setAverageScore(double averageScore) {
         if(this.getRole()==ROLE.LECTURER){
             this.averageScore = averageScore;
@@ -92,6 +110,13 @@ public class Student extends Person {
         this.statusOfAdmission = statusOfAdmission;
     }
 
+    public REGISTRATION_STATUS getDepartmentalRegistrationStatus() {
+        return departmentalRegistrationStatus;
+    }
+
+    public void setDepartmentalRegistrationStatus(REGISTRATION_STATUS departmentalRegistrationStatus) {
+        this.departmentalRegistrationStatus = departmentalRegistrationStatus;
+    }
 
     @Override
     public String toString() {
@@ -101,7 +126,40 @@ public class Student extends Person {
                 ", studentClass='" + studentClass + '\'' +
                 ", subjectsOffered=" + subjectsOffered +
                 ", averageScore=" + averageScore +
+                ", departmentalRegistrationStatus=" + departmentalRegistrationStatus +
                 ", statusOfAdmission=" + statusOfAdmission +
                 "} " + super.toString();
+    }
+
+    @Override
+    public String paymentValidation(String paymentToken) {
+        String msg = "";
+        if(this.getRole()!=ROLE.STUDENT) {
+            throw new UnAuthorizeException("You don't have permission to register");
+        }
+        Set<String> usedTokens = School.getUsedValidPaymentToken();
+        Set<String> validTokens = School.getValidPaymentToken();
+
+        if(this.getWrongTokenEntryCount()==3) {
+            throw new AccountBlockedException("Your Account has been blocked");
+        }
+        for (String s: usedTokens) {
+            if (paymentToken.equals(s)) {
+                this.setWrongTokenEntryCount(this.getWrongTokenEntryCount() + 1);
+                throw new TokenUsedException("This Token Has been Used");
+            }
+        }
+        for (String st: validTokens) {
+            System.out.println(st);
+            if(!Objects.equals(paymentToken, st)){
+                System.out.println(validTokens);
+                throw new InvalidTokenException("This token is invalid");
+            }
+            this.setDepartmentalRegistrationStatus(REGISTRATION_STATUS.APPROVED);
+            usedTokens.add(paymentToken);
+            msg = "Your payment has been successfully validated";
+            break;
+        }
+        return msg;
     }
 }

@@ -4,6 +4,7 @@ import org.example.SOLID.Chair;
 import org.example.SOLID.Furniture;
 import org.example.SOLID.Table;
 import org.example.enums.*;
+import org.example.exceptions.InvalidTokenException;
 import org.example.models.*;
 
 import java.util.*;
@@ -190,11 +191,21 @@ public class Main {
         System.out.println(ad1.admitApplicant(ap1, school));
         System.out.println();
 
+        System.out.println("************************Seventh 2nd Class ************************");
+        Staff ad2 = new Staff();
+        ad2.setName("Class variable");
+//        System.out.println(School.getValidPaymentToken());
 
+        Student newStudent = new Student();
+//        newStudent.setWrongTokenEntryCount(3);
+        newStudent.setRole(ROLE.STUDENT);
+        newStudent.setName("Dave");
 
+        System.out.println(School.getValidPaymentToken());
+        System.out.println(newStudent.getWrongTokenEntryCount());
+        System.out.println(newStudent.paymentValidation("LEVEL100A3"));
 
-
-
+        System.out.println(newStudent.getDepartmentalRegistrationStatus());
 
 
     }
@@ -213,12 +224,17 @@ public class Main {
 //    1. Lecturer scores and records applicant scores  //DONE
 //    2. Admit an applicant base on scores passed// DONE
 //    3. Admin employ lecturer base on (Qualification) DO it your self
-//    4. Students should choose subjects base on their fields e.g science, commercial, art
-//    5. payment of school fees
-//    6. Students should register courses.
-//    7. Student receive email of results.
-//    8. Lecturer promoted to admin.
-//    9. Students should write periodic exams.
-//    10.Faculty heads, lecturers, head of department e.t.c
+//    4. payment of school fees
+//         - List of valid receipt numbers
+//         - If valid, student can use it for registration.
+//    5. Students should register courses.
+//       >Students should choose subjects base on their fields e.g science, commercial, art
+//            - Student must a department
+//            -Student registration must have been approved
+//            - subjects must exist base on department
+//    6. Student receive email of results.
+//    7. Lecturer promoted to admin.
+//    8. Students should write periodic exams.
+//    9.Faculty heads, lecturers, head of department e.t.c
 
 }
