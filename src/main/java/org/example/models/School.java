@@ -3,9 +3,9 @@ package org.example.models;
 import java.util.*;
 
 public class School {
-    static private  List<Student> listOfStudents;
-    static private  List<Staff> listOfStaff;
-    static private  List<Applicant> listOfApplicant;
+    static private  List<Student> listOfStudents = new ArrayList<>();
+    static private  List<Staff> listOfStaff = new ArrayList<>();
+    static private  List<Applicant> listOfApplicant = new ArrayList<>();
     static final private Set<String> validPaymentToken = new HashSet<>(Arrays.asList("LEVEL100A0", "LEVEL100A1", "LEVEL100A3","LEVEL100A4", "LEVEL100A5"));
     static private Set<String> usedValidPaymentToken = new HashSet<>();
 
@@ -21,12 +21,17 @@ public class School {
     }
 
 
-    public List<Student> getListOfStudents() {
-        return listOfStudents;
-    }
+//    public List<Student> getListOfStudents() {
+//        return listOfStudents;
+//    }
+//
+//    public void setListOfStudents(List<Student> listOfStudents) {
+//        this.listOfStudents = listOfStudents;
+//    }
 
-    public void setListOfStudents(List<Student> listOfStudents) {
-        this.listOfStudents = listOfStudents;
+
+    public static List<Student> getListOfStudents() {
+        return listOfStudents;
     }
 
     public static List<Staff> getListOfStaff() {

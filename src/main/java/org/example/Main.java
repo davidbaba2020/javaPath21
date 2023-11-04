@@ -207,7 +207,7 @@ public class Main {
 
         System.out.println(newStudent.getDepartmentalRegistrationStatus());
 
-
+//        System.out.println(School.getListOfStudents());
     }
 
 
@@ -236,5 +236,6 @@ public class Main {
 //    7. Lecturer promoted to admin.
 //    8. Students should write periodic exams.
 //    9.Faculty heads, lecturers, head of department e.t.c
+
 
 }

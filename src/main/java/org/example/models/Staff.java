@@ -119,7 +119,7 @@ public class Staff extends Person implements AdminInterface, LecturerInterface {
         newAdmitedStudent.setAge(applicant.getAge());
         newAdmitedStudent.setRole(ROLE.STUDENT);
         schoolStudentsList.add(newAdmitedStudent);
-        school.setListOfStudents(schoolStudentsList);
+//        school.setListOfStudents(schoolStudentsList);
     }
 
     @Override

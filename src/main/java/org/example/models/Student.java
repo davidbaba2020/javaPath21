@@ -162,4 +162,29 @@ public class Student extends Person implements StudentInterface {
         }
         return msg;
     }
+
+//    public static void main(String[] args) {
+//        List<Applicant> appplicants = School.getListOfApplicant();
+//        List<Student> studentss = School.getListOfStudents();
+//
+//
+//        Applicant ap = new Applicant();
+//        ap.setName("Davis");
+//
+//        appplicants.add(ap);
+//
+//        Student s2 = new Student();
+//        s2.setName(ap.getName());
+//
+//        appplicants.remove(ap);
+//        studentss.add(s2);
+//
+//
+//        System.out.println(s2);
+//
+//        System.out.println(appplicants);
+//        System.out.println(studentss);
+//
+//
+//    }
 }
