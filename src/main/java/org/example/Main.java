@@ -207,7 +207,29 @@ public class Main {
 
         System.out.println(newStudent.getDepartmentalRegistrationStatus());
 
+        PriorityQueue<Staff> user = new PriorityQueue<>();
+        ArrayList<Staff> user55 = new ArrayList<>();
+
 //        System.out.println(School.getListOfStudents());
+        LinkedList<Staff> borrowersByFIFO = new LinkedList<>();
+        Staff staff = new Staff();
+        staff.setName("Staff3");
+        Staff staff2 = new Staff();
+        staff2.setName("Staff2");
+        Staff staff3 = new Staff();
+        staff3.setName("Staff5");
+
+        borrowersByFIFO.add(staff);
+        borrowersByFIFO.add(staff2);
+        borrowersByFIFO.add(staff2);
+
+        Service ser = new Service();
+        System.out.println("************************************");
+        ser.borrowBook(borrowersByFIFO);
+//        ser.borrowBook(user);
+//        ser.borrowBook(user55);
+
+
     }
 
 
